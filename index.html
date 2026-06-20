@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>✦ Edward-Night ✦ Miamor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Mali&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #1a0b2e, #2d1b4e, #1a0b2e);
+      overflow: hidden;
+      transition: background-color 1.2s ease, background 1.2s ease;
+    }
+
+    /* Cuadro central */
+    #start-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10, 6, 24, 0.85);
+      border: 3px solid #a855f7;
+      box-shadow: 0 0 20px #7c3aed, 0 0 40px #a855f7, 0 0 60px #6d28d9;
+      border-radius: 30px;
+      padding: 60px 80px;
+      animation: glowBox 2s ease-in-out infinite alternate;
+      backdrop-filter: blur(10px);
+    }
+
+    @keyframes glowBox {
+      0% {
+        box-shadow: 0 0 15px #7c3aed, 0 0 30px #a855f7;
+      }
+      100% {
+        box-shadow: 0 0 25px #a855f7, 0 0 50px #7c3aed, 0 0 70px #6d28d9;
+      }
+    }
+
+    #start-text {
+      font-size: 55px;
+      color: #c084fc;
+      font-weight: bold;
+      margin-bottom: 25px;
+      text-shadow:
+        0 0 10px #7c3aed,
+        0 0 20px #a855f7,
+        0 0 40px #6d28d9;
+      animation: pulse 2s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% {
+        text-shadow:
+          0 0 10px #7c3aed,
+          0 0 20px #a855f7,
+          0 0 40px #6d28d9;
+      }
+      100% {
+        text-shadow:
+          0 0 20px #a855f7,
+          0 0 40px #7c3aed,
+          0 0 60px #c084fc;
+      }
+    }
+
+    #start-btn {
+      background: linear-gradient(45deg, #7c3aed, #a855f7, #ec4899);
+      border: none;
+      color: white;
+      padding: 15px 35px;
+      font-size: 22px;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(124, 58, 237, 0.6);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #start-btn::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+      transform: rotate(45deg);
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      0% { transform: translateX(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) rotate(45deg); }
+    }
+
+    #start-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(124, 58, 237, 0.9);
+    }
+
+    #start-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Corazones flotantes */
+    .floating-heart {
+      position: fixed;
+      font-size: 24px;
+      color: #c084fc;
+      opacity: 0.8;
+      animation: floatHeart 8s ease-in-out infinite;
+      pointer-events: none;
+      text-shadow:
+        0 0 10px #a855f7,
+        0 0 20px #7c3aed,
+        0 0 40px #6d28d9;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-30px) scale(1.1);
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Letras cayendo */
+    .falling-text {
+      position: fixed;
+      top: -10vh;
+      font-family: 'Mali', cursive;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      color: #c084fc;
+      text-shadow:
+        0 0 10px #7c3aed,
+        0 0 20px #a855f7,
+        0 0 40px #6d28d9,
+        0 0 60px #c084fc;
+      animation: fall linear forwards, neonGlow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes neonGlow {
+      0% {
+        text-shadow:
+          0 0 10px #7c3aed,
+          0 0 20px #a855f7,
+          0 0 40px #6d28d9;
+      }
+      100% {
+        text-shadow:
+          0 0 20px #a855f7,
+          0 0 40px #7c3aed,
+          0 0 60px #c084fc;
+      }
+    }
+
+    @keyframes fall {
+      0% {
+        top: -10vh;
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        top: 100vh;
+        opacity: 0.8;
+      }
+    }
+
+    @keyframes starBlink {
+      0%, 100% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+
+    /* Créditos Edward-Night */
+    .credits {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Mali', cursive;
+      font-size: 1.2rem;
+      color: #c084fc;
+      text-shadow: 0 0 15px rgba(168,85,247,0.8), 0 0 30px rgba(124,58,237,0.5);
+      z-index: 1000;
+      background: rgba(10, 6, 24, 0.7);
+      backdrop-filter: blur(8px);
+      padding: 10px 28px;
+      border-radius: 50px;
+      border: 1px solid rgba(168,85,247,0.3);
+      animation: creditsGlow 3s ease-in-out infinite alternate;
+      display: none;
+    }
+
+    .credits.show {
+      display: block;
+    }
+
+    @keyframes creditsGlow {
+      0% { text-shadow: 0 0 15px rgba(168,85,247,0.8); }
+      100% { text-shadow: 0 0 25px rgba(168,85,247,1), 0 0 40px rgba(124,58,237,0.8); }
+    }
+
+    @media (max-width: 600px) {
+      #start-screen {
+        padding: 40px 30px;
+      }
+      #start-text {
+        font-size: 32px;
+      }
+      #start-btn {
+        font-size: 18px;
+        padding: 12px 25px;
+      }
+      .credits {
+        font-size: 0.9rem;
+        padding: 8px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="start-screen">
+    <div id="start-text">💜 Toque aquí amor 💜</div>
+    <button id="start-btn">✨ Toca aquí ✨</button>
+  </div>
+
+  <div class="credits" id="credits">✦ Hecho por Edward-Night ✦</div>
+
+  <script>
+    const startBtn = document.getElementById('start-btn');
+    const startScreen = document.getElementById('start-screen');
+    const credits = document.getElementById('credits');
+
+    // Corazones flotando
+    for (let i = 0; i < 30; i++) {
+      const heart = document.createElement("div");
+      heart.className = "floating-heart";
+      const hearts = ["💜", "❤️", "💖", "✨", "🌟"];
+      heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+      document.body.appendChild(heart);
+
+      const left = Math.random() * 100;
+      const delay = Math.random() * 6;
+      const size = Math.random() * 24 + 16;
+
+      heart.style.left = left + "vw";
+      heart.style.top = Math.random() * 90 + "vh";
+      heart.style.fontSize = size + "px";
+      heart.style.animationDelay = delay + "s";
+    }
+
+    startBtn.addEventListener('click', () => {
+      // Ocultar inicio y mostrar créditos
+      startScreen.style.display = 'none';
+      credits.classList.add('show');
+
+      // Fondo estrellado oscuro
+      document.body.style.background = "radial-gradient(circle at top, #0a0618, #1a0b2e, #0a0618)";
+
+      // Fondo estrellado
+      let starBackground = document.createElement("div");
+      document.body.appendChild(starBackground);
+      Object.assign(starBackground.style, {
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+        zIndex: "-1",
+        overflow: "hidden"
+      });
+
+      const starCount = 120;
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement("div");
+        const size = Math.random() * 3 + 1 + "px";
+        const left = Math.random() * 100 + "vw";
+        const top = Math.random() * 100 + "vh";
+        const delay = Math.random() * 3 + "s";
+        const duration = (Math.random() * 2 + 1) + "s";
+        const colors = ['#c084fc', '#a855f7', '#7c3aed', '#ffffff'];
+        star.style.cssText = `
+          position: absolute;
+          width: ${size};
+          height: ${size};
+          background: ${colors[Math.floor(Math.random() * colors.length)]};
+          border-radius: 50%;
+          left: ${left};
+          top: ${top};
+          opacity: 0;
+          animation: starBlink ${duration} ease-in-out infinite;
+          animation-delay: ${delay};
+          box-shadow: 0 0 10px ${colors[Math.floor(Math.random() * colors.length)]}, 0 0 20px #7c3aed;
+        `;
+        starBackground.appendChild(star);
+      }
+
+      // Letras cayendo personalizadas
+      const fallingWords = [
+        "💜 Edward-Night", 
+        "Te amo", 
+        "Eres especial", 
+        "Siempre contigo",
+        "Eres mi vida", 
+        "Mi amor eterno", 
+        "💜",
+        "Eres mi todo",
+        "✨ Eres único ✨",
+        "🌟 Brillas",
+        "❤️ Te quiero",
+        "💖 Mi amor"
+      ];
+
+      const layers = [
+        { fontSize: 34, opacity: 1, duration: 8, positions: [] },
+        { fontSize: 26, opacity: 0.8, duration: 9, positions: [] },
+        { fontSize: 22, opacity: 0.7, duration: 10, positions: [] },
+        { fontSize: 18, opacity: 0.6, duration: 11, positions: [] }
+      ];
+
+      function isPositionValid(positions, left) {
+        return positions.every(pos => Math.abs(pos - left) > 8);
+      }
+
+      setInterval(() => {
+        const span = document.createElement("span");
+        span.className = "falling-text";
+        span.textContent = fallingWords[Math.floor(Math.random() * fallingWords.length)];
+
+        const layerIndex = Math.floor(Math.random() * layers.length);
+        const layer = layers[layerIndex];
+
+        let left;
+        let attempts = 0;
+        do {
+          left = Math.random() * 100;
+          attempts++;
+          if (attempts > 30) break;
+        } while (!isPositionValid(layer.positions, left));
+
+        layer.positions.push(left);
+        span.style.left = left + "vw";
+        span.style.fontSize = layer.fontSize + "px";
+        span.style.opacity = layer.opacity;
+        span.style.animationDuration = layer.duration + "s";
+        
+        // Colores variados
+        const colors = ['#c084fc', '#a855f7', '#ec4899', '#f472b6', '#8b5cf6'];
+        span.style.color = colors[Math.floor(Math.random() * colors.length)];
+        
+        document.body.appendChild(span);
+
+        setTimeout(() => {
+          span.remove();
+          const index = layer.positions.indexOf(left);
+          if (index > -1) layer.positions.splice(index, 1);
+        }, layer.duration * 1000 + 500);
+      }, 250);
+    });
+  </script>
+
+</body>
+</html>
